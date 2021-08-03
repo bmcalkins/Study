@@ -12,17 +12,29 @@ class Tester {
     
     /// 1. Write a function that takes an array of numbers and returns an array with each of the numbers multiplied by 2
     func multiplyByTwo(numbers original: [Int]) -> [Int]{
-
-      return []
+        let augmentedArray = original.map { ele in
+            return ele * 2
+        }
+      return augmentedArray
     }
 
     /// 2. Write a function to return the last half of the array, not including the median
     func lastHalf(array: [Int]) -> [Int] {
-        return []
+        let midpoint = array.count / 2
+        let secondHalf = array.enumerated().filter { (index, value) in
+            index > midpoint
+        }
+     return   secondHalf  // [ (index, value) ] need to convert to [value]
     }
-
+    
+   
     /// 3. Write a function that can creates an array populated with integers going from start (input) to end (input)
     func createArray(from start: Int, to end: Int) -> [Int] {
+        let rangeArray = Array(10...13)
+        for e in rangeArray {
+            print(e)
+        }
+        
       return []
     }
 
@@ -33,16 +45,39 @@ class Tester {
         [7,8,9]]
      */
     func create2DArray() -> [[Int]] {
-      return []
+        let intArray = [1...9]
+        let perRow = 3
+        let int2dArray: [[Int]] = stride(from: 0, to: intArray.count, by: perRow).map {
+            Array(intArray[$0..<$0+perRow])
+        }
+      return [[int2dArray]]
     }
 
     /// 5. Write a function that returns the number of pairs of elements that sums up to 0
     /// Input [1,2,3,-1,-2,-4] -> Output 2
     func findPairs(nums: [Int]) -> Int {
-
-      return 0
+        let sortedArray = nums.sorted()
+        var leftIndex = 0
+        var rightIndex = sortedArray.count - 1
+        
+        while leftIndex < rightIndex {
+            let leftElement = sortedArray[leftIndex]
+            let rightElement = sortedArray[rightIndex]
+            let currentSum = leftElement + rightElement
+            
+            if currentSum == 0 {
+                print("\(leftElement), \(rightElement)")
+                break
+            } else if currentSum != 0 {
+                leftIndex += 1
+            } else {
+                rightIndex -= 1
+            }
+        }
+     print(findPairs)
     }
-    
+
+
     /// 6. Returns an array of indexes where the char occurs in input word
     func positionsOf(character: Character, in word: String) -> [Int] {
 
@@ -57,6 +92,17 @@ class Tester {
         Ex. [ I, I, O] -> 2
      */
     func minimumChairs(array: [Character]) -> Int {
+        let occupiedChair: Character = "I"
+        let emptyChair: Character = "O"
+        var count = 0
+        for ele in array {
+            if ele == occupiedChair {
+                count += 1
+            } else if  ele == emptyChair {
+                count -= 1
+            }
+        }
+        
         return 0
     }
     
